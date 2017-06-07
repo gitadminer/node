@@ -1,7 +1,8 @@
 'use strict';
 
 import mongoose from 'mongoose';
-import config from 'config-lite';
+//import config from 'config-lite';
+const config = require('config-lite')(__dirname);
 mongoose.connect(config.host, {server:{auto_reconnect:true}});
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
@@ -11,7 +12,7 @@ db.once('open',()=>{
 })
 //监听错误
 db.on('error',(error)=>{
-	console.log('error:'+error);
+	console.log('Error:'+error);
 	mongoose.disconnect();
 })
 
