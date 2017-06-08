@@ -4,9 +4,9 @@ var config = require('./config.js');
 var webpack = require('webpack');
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.js')
-
 var app = express()
 var compiler = webpack(webpackConfig)
+
 
 var  devMiddleware = require('webpack-dev-middleware')(compiler, {
 	publicPath: webpackConfig.output.publicPath,
@@ -20,7 +20,7 @@ var  devMiddleware = require('webpack-dev-middleware')(compiler, {
 });
 
 var hotMiddleware = require('webpack-hot-middleware')(compiler)
-Object.keys(proxyTable).forEach(function (context) {
+Object.keys({}).forEach(function (context) {
   var options = proxyTable[context]
   if (typeof options === 'string') {
     options = { target: options }
@@ -32,10 +32,10 @@ Object.keys(proxyTable).forEach(function (context) {
 app.use(devMiddleware)
 app.use(hotMiddleware)
 
+var uri = 'http://localhost:' + config.port
 devMiddleware.waitUntilValid(function () {
   console.log('> Listening at ' + uri + '\n')
 })
-
 
 module.exports = app.listen(config.port, function (err) {
   if (err) {

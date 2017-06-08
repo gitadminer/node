@@ -9,7 +9,7 @@ function resolve (dir) {
 
 module.exports = {
 	entry:{
-		app:resolve('public/app')
+		app:['webpack-hot-middleware/client',resolve('public/app')]
 	},
 	output:{
 		path:resolve('/dist'),  //build 目录
@@ -17,13 +17,13 @@ module.exports = {
 		filename: '[name].js', //编译后的文件名字
 	},
 	resolve: {
-        extensions: ['', '.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全
+        extensions: ['.js', '.jsx','.scss', '.css'], //后缀名自动补全
     },
 	module:{
 		rules:[
 			{
 	            test: /\.jsx$/,
-	            loaders: ['react-hot', 'jsx', 'babel'],
+	            loaders: ['react-hot','babel'],
 	            include: resolve('public/app')
 	        },
 			{

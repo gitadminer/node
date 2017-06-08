@@ -4,11 +4,6 @@ var config = require('./config.js');
 var baseWebpackConfig = require('./webpack.base.js');
 var HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html
 
-// add hot-reload related code to entry chunks
-Object.keys(baseWebpackConfig.entry).forEach(function (name) {
-  baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
-})
-
 
 module.exports = merge(baseWebpackConfig, {
   // cheap-module-eval-source-map is faster for development

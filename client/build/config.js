@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = {
-	port:'8088',
+	port:"8088",
 	dev:{
-		 NODE_ENV:'"development"'
+		 NODE_ENV:"development"
 	}
 }
 
