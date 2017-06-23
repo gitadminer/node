@@ -6,14 +6,13 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin'); //css单独打�
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
-
 module.exports = {
 	entry:{
-		app:['webpack-hot-middleware/client',resolve('public/app')]
+		app:resolve('/public/app.js')
 	},
 	output:{
 		path:resolve('/dist'),  //build 目录
-		publicPath:'/dist',
+		publicPath:'/',
 		filename: '[name].js', //编译后的文件名字
 	},
 	resolve: {

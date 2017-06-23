@@ -2,10 +2,8 @@ import express from 'express';
 import db from './mongodb/db.js';
 
 
-const app = express();
-
 app.get('/', function (req, res) {
-  res.send(1);
+  res.send(a);
 });
 
 app.listen(3000);

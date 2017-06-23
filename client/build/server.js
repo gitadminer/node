@@ -20,6 +20,7 @@ var  devMiddleware = require('webpack-dev-middleware')(compiler, {
 });
 
 var hotMiddleware = require('webpack-hot-middleware')(compiler)
+
 Object.keys({}).forEach(function (context) {
   var options = proxyTable[context]
   if (typeof options === 'string') {
@@ -28,9 +29,13 @@ Object.keys({}).forEach(function (context) {
   app.use(proxyMiddleware(context, options))
 })
 
+// handle fallback for HTML5 history API
+app.use(require('connect-history-api-fallback')());
+
 
 app.use(devMiddleware)
 app.use(hotMiddleware)
+app.use(express.static('dist'))
 
 var uri = 'http://localhost:' + config.port
 devMiddleware.waitUntilValid(function () {
