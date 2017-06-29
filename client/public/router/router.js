@@ -1,15 +1,14 @@
 import React from 'react'
-import {
-  Route,
-  IndexRoute
-} from 'react-router'
+import {Route} from 'react-router-dom'
 import App from '../componets/index.js'
+import Test from '../componets/test.js'
+
 
 const routes = (
-  <Route>
-    <Route path="/" component={App}>
-    </Route>
-  </Route>
+  <div>
+    <Route exact  path="/" component={App} />
+	<Route path="/test" component={Test} />
+  </div>
 );
 
 export default routes
