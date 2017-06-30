@@ -10,8 +10,7 @@ import {
   Route ,} from 'react-router-dom'
 import createHistory from 'history/createBrowserHistory'
 import reducers from './reducers/';
-import App from './componets/index.js';
-import Test from './componets/test.js'
+
 const middleware = routerMiddleware(history)
 const store = createStore(
   combineReducers({
@@ -21,8 +20,15 @@ const store = createStore(
   applyMiddleware(middleware)
 )
 
+
+
 const history = createHistory()
 const MOUNT_NODE = document.getElementById('app');
+
+
+
+import App from './componets/index.js';
+import Test from './componets/test.js'
 ReactDOM.render(
 	<Provider store={store}>
 		<Router  history={history}>
