@@ -1,11 +1,15 @@
 'use strict';
 var path = require('path');
 var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin'); //css单独打包
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
+function assetsPath(_path){
+	var assetsSubDirectory = 'static'
+  	return path.posix.join(assetsSubDirectory, _path)
+}
+
 module.exports = {
 	entry:{
 		app:resolve('/public/app.js')
@@ -36,27 +40,17 @@ module.exports = {
 		        query: {
 		          limit: 10000,
 		          name: 'images/[name].[hash:7].[ext]'
-		        }
+		        },
+		        include: resolve('public')
 		    },
-		    {
-		        test: /\.css/,
-		        loaders: ['style', 'css', 'autoprefixer']
-		    },
-		    {
-		        test: /\.scss/,
-		        loader: 'style-loader!css-loader!autoprefixer-loader!sass-loader'
-		    },
-		    {
-		        test: /\.json$/,
-		        loader: 'json'
-		     },
 		    {
 		        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
 		        loader: 'url-loader',
 		        query: {
 		          limit: 10000,
-		          name: 'fonts/[name].[hash:7].[ext]'
-		        }
+		          name: assetsPath('fonts/[name].[hash:7].[ext]')
+		        },
+		        include: resolve('public')
 		    }
 		]
 	}

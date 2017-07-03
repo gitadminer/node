@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux'
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux'
 import { addTodo} from '../actions'
+import { Icon,Button } from 'antd';
+import '../assets/style/home.scss';
 
 @connect(
     (state, props) => ({username:'archer'},{
@@ -54,7 +56,7 @@ export default class App extends React.Component{
 				<div id="contrainer">
 					<p>{this.state.color}</p>
 					<Link to="/test">test</Link>
-					<button type="button" onClick={this.resizename}>resize</button>
+					<Button type="primary" onClick={this.resizename}><Icon type="smile" /> resize</Button>
 				</div>
 			)
 	}

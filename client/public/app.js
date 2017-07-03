@@ -19,7 +19,7 @@ const store = createStore(
   }),
   applyMiddleware(middleware)
 )
-
+import './assets/style/reset.scss';
 
 
 const history = createHistory()

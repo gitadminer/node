@@ -3,7 +3,7 @@ var path = require('path')
 var config = require('./config.js');
 var webpack = require('webpack');
 var proxyMiddleware = require('http-proxy-middleware')
-var webpackConfig = require('./webpack.js')
+var webpackConfig = require('./webpack.server.js')
 var app = express()
 var compiler = webpack(webpackConfig)
 
@@ -35,7 +35,7 @@ app.use(require('connect-history-api-fallback')());
 
 app.use(devMiddleware)
 app.use(hotMiddleware)
-app.use(express.static('dist'))
+app.use(express.static('../static'))
 
 var uri = 'http://localhost:' + config.port
 devMiddleware.waitUntilValid(function () {

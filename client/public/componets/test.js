@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Button } from 'antd';
 @connect((state,props)=>({
 	mytodo:state.reducers.todos
 }))
@@ -16,7 +17,7 @@ export default class Test extends Component{
 	render(){
 		const {mytodo}  = this.props;
 		return (
-			<Link to="/">home</Link>
+			<Button type="primary"><Link to="/">home</Link></Button>
 		)
 	}
 }
