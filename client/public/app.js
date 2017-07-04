@@ -4,12 +4,14 @@ import {createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
 // import routes from './router/router';
-import { routerReducer, routerMiddleware, push } from 'react-router-redux'
-import {
-  BrowserRouter as Router,
-  Route ,} from 'react-router-dom'
-import createHistory from 'history/createBrowserHistory'
+import { routerReducer, routerMiddleware} from 'react-router-redux'
+// import {
+//   BrowserRouter as Router,
+//   Route} from 'react-router-dom'
+//import createHistory from 'history/createBrowserHistory'
 import reducers from './reducers/';
+import './assets/style/reset.scss';
+import Routes  from './router/router';
 
 const middleware = routerMiddleware(history)
 const store = createStore(
@@ -19,24 +21,15 @@ const store = createStore(
   }),
   applyMiddleware(middleware)
 )
-import './assets/style/reset.scss';
-
-
-const history = createHistory()
+//const history = createHistory()
 const MOUNT_NODE = document.getElementById('app');
 
-
-
 import App from './componets/index.js';
-import Test from './componets/test.js'
+import Test from './componets/test.js';
+import Login from './componets/login.js';
 ReactDOM.render(
 	<Provider store={store}>
-		<Router  history={history}>
-			<div>
-				<Route exact path="/" component={App} />
-				<Route path="/test" component={Test} />
-			</div>
-		</Router>
-    </Provider>,
-  	MOUNT_NODE
+      <Routes />
+  </Provider>,
+  MOUNT_NODE
 );
