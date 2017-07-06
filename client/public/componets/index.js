@@ -3,8 +3,9 @@ import { bindActionCreators } from 'redux'
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux'
 import { addTodo} from '../actions'
-import { Icon,Button } from 'antd';
+import { Icon,Button,Layout } from 'antd';
 import '../assets/style/home.scss';
+const { Header, Content, Sider } = Layout;
 
 @connect(
     (state, props) => ({username:'archer'},{
@@ -53,11 +54,22 @@ export default class App extends React.Component{
 	render(){
 		const {username,name,todo}  = this.props;
 		return(
-				<div id="contrainer">
-					<p>{this.state.color}</p>
-					<Link to="/test">test</Link>
-					<Button type="primary" onClick={this.resizename}><Icon type="smile" /> resize</Button>
-				</div>
+				<Layout className="container-home">
+					<Header>
+						<div className="logo" />
+					</Header>
+					<Layout>
+						<Sider width={200} style={{background:'#fff'}}>
+							
+						</Sider>
+					
+						<Layout>
+							<Content>
+								aa
+							</Content>
+						</Layout>
+					</Layout>
+				</Layout>
 			)
 	}
 }

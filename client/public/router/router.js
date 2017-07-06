@@ -14,6 +14,10 @@ import Login from '../componets/login.js';
 
 
 const routes =[{
+		path:'/',
+		component:App,
+		exact: true,
+	},{
 		path:'/home',
 		component:App,
 		exact: true,
