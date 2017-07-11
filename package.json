@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development supervisor --harmony index.js"
+    "dev": "cross-env NODE_ENV=development supervisor --harmony index.js",
+    "socket": "cross-env NODE_ENV=development supervisor --harmony socket-es6.js"
   },
   "author": "",
   "license": "ISC",
@@ -25,7 +26,9 @@
     "express": "^4.15.3",
     "express-session": "^1.15.3",
     "mongodb": "^2.2.28",
-    "mongoose": "^4.10.4"
+    "mongoose": "^4.10.4",
+    "nodejs-websocket": "^1.7.1",
+    "socket.io": "^2.0.3"
   },
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.24.1",

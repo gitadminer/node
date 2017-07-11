@@ -4,9 +4,13 @@ var config = require('./config.js');
 var baseWebpackConfig = require('./webpack.base.js');
 var HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html
 var path = require('path')
+var rm = require('rimraf')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
+rm(path.join('../dist/'), err => {
+  if (err) throw err
+})
 
 module.exports = merge(baseWebpackConfig, {
   // cheap-module-eval-source-map is faster for development
