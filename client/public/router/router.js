@@ -2,7 +2,8 @@ import React from 'react'
 import {
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch,
+  Redirect
 } from 'react-router-dom'
 
 import createHistory from 'history/createBrowserHistory'
@@ -13,41 +14,44 @@ import Test from '../componets/test.js';
 import Login from '../componets/login.js';
 
 
-const routes =[{
+const routes =[
+	{
 		path:'/',
 		component:App,
 		exact: true,
-	},{
-		path:'/home',
-		component:App,
-		exact: true,
-	},{
-		path:'/test',
-		component:Test,
-		exact: true,
+		Auth:true,
+		routes:[
+			{
+				path:'home',
+				component:App,
+				exact: true,
+				Auth:true
+			},{
+				path:'/test',
+				component:Test,
+				exact: true,
+				Auth:true
+			}
+		]
 	},
 	{
 		path:'/login',
-		component:Login,
-		exact: true,
+		component:Login
 	}
 ]
-
 const RouteWithSubRoutes = (route) => (
-  <Route path={route.path} render={props => (
-    // pass the sub-routes down to keep nesting
-    <route.component {...props} routes={route.routes}/>
-  )}/>
+  <Route path={route.path} render={(props) =>(<route.component {...props} routes={route.routes}/>)} />
 )
 
-const RouteConfigExample = () => (
+
+
+const RouteConfig= () => (
   <Router history={history}>
     <Switch>
       {routes.map((route, i) => (
-        <Route key={i} path={route.path} exact={route.exact} component={route.component} />
+        <RouteWithSubRoutes  key={i}  {...route}  />
       ))}
     </Switch>
   </Router>
 )
-
-export default RouteConfigExample
+export default RouteConfig

@@ -24,11 +24,8 @@ const store = createStore(
 //const history = createHistory()
 const MOUNT_NODE = document.getElementById('app');
 
-import App from './componets/index.js';
-import Test from './componets/test.js';
-import Login from './componets/login.js';
 ReactDOM.render(
-	<Provider store={store}>
+ <Provider store={store}>
       <Routes />
   </Provider>,
   MOUNT_NODE

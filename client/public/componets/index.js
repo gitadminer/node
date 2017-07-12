@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { bindActionCreators } from 'redux'
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux'
@@ -25,6 +25,9 @@ export default class App extends React.Component{
 			isshow:false,
 			color:'red'
 		}
+	}
+	componentWillMount() {
+		console.log(1);
 	}
 	componentDidMount() {
 		// console.log(this);
