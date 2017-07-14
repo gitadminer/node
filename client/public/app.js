@@ -3,25 +3,20 @@ import ReactDOM from 'react-dom'
 import {createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
-// import routes from './router/router';
-import { routerReducer, routerMiddleware} from 'react-router-redux'
-// import {
-//   BrowserRouter as Router,
-//   Route} from 'react-router-dom'
-//import createHistory from 'history/createBrowserHistory'
+//import { routerReducer, routerMiddleware} from 'react-router-redux'
 import reducers from './reducers/';
 import './assets/style/reset.scss';
 import Routes  from './router/router';
 
-const middleware = routerMiddleware(history)
-const store = createStore(
-  combineReducers({
-    reducers,
-    router: routerReducer
-  }),
-  applyMiddleware(middleware)
-)
-//const history = createHistory()
+// const store = createStore(  
+//   combineReducers({
+//     reducers,
+//     routing: routerReducer
+//   })
+// )
+
+
+const store = createStore(reducers)
 const MOUNT_NODE = document.getElementById('app');
 
 ReactDOM.render(

@@ -2,18 +2,15 @@ import React from 'react';
 import { bindActionCreators } from 'redux'
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux'
-import { addTodo} from '../actions'
+//import { addTodo} from '../actions'
 import { Icon,Button,Layout } from 'antd';
 import '../assets/style/home.scss';
 const { Header, Content, Sider } = Layout;
 
 @connect(
     (state, props) => ({username:'archer'},{
-    	todo:state.reducers.todos
-    }),
-    (dispatch) => ({ 
-    	todoActions: bindActionCreators({addTodo}, dispatch),
-    	dispatch:dispatch })
+    	getState:state
+    })
 )
 export default class App extends React.Component{
 	constructor(props,contex){
@@ -34,7 +31,7 @@ export default class App extends React.Component{
 		// console.log(this.props.todoActions.addTodo('test'))
 	    // 添加事件处理函数订阅数据
 	    //console.log(this.props)
-	    let { dispatch } = this.props;
+	    //let { dispatch } = this.props;
 	    //console.log(dispatch)
 	 }
 	 componentWillUnmount() {

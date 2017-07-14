@@ -9,9 +9,9 @@ import {
 import createHistory from 'history/createBrowserHistory'
 const history = createHistory()
 //componets
-import App from '../componets/index.js';
-import Test from '../componets/test.js';
-import Login from '../componets/login.js';
+import App from '../views/index.js';
+import Test from '../views/test.js';
+import Login from '../views/login.js';
 
 
 const routes =[

@@ -10,7 +10,10 @@ const formTailLayout = {
   labelCol: { span: 4 },
   wrapperCol: { span: 8, offset: 4 },
 };
-class Login extends React.Component{
+
+@Form.create({})
+
+export default class Login extends React.Component{
   state = {
     checkNick: false,
 
@@ -66,5 +69,3 @@ class Login extends React.Component{
     );
   }
 }
-const WrappedDemo = Form.create()(Login);
-export default WrappedDemo;
