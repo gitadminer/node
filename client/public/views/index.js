@@ -2,13 +2,12 @@ import React from 'react';
 import { bindActionCreators } from 'redux'
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux'
-//import { addTodo} from '../actions'
 import { Icon,Button,Layout } from 'antd';
 import '../assets/style/home.scss';
 const { Header, Content, Sider } = Layout;
 
 @connect(
-    (state, props) => ({username:'archer'},{
+    (state, props) => ({
     	getState:state
     })
 )
@@ -17,22 +16,9 @@ export default class App extends React.Component{
 		super(props);
 		this.handleChange = this.handleChange.bind(this);
 		this.resizename = this.resizename.bind(this);
-		this.state = {
-			islogin:false,
-			isshow:false,
-			color:'red'
-		}
-	}
-	componentWillMount() {
-		console.log(1);
 	}
 	componentDidMount() {
-		// console.log(this);
-		// console.log(this.props.todoActions.addTodo('test'))
-	    // 添加事件处理函数订阅数据
-	    //console.log(this.props)
-	    //let { dispatch } = this.props;
-	    //console.log(dispatch)
+	    let { dispatch } = this.props;
 	 }
 	 componentWillUnmount() {
 	    // 清除事件处理函数
@@ -52,7 +38,6 @@ export default class App extends React.Component{
 	 	})
 	 }
 	render(){
-		const {username,name,todo}  = this.props;
 		return(
 				<Layout className="container-home">
 					<Header>

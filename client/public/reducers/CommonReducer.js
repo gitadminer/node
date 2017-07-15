@@ -6,7 +6,6 @@ const initialState = {
   user: null,
 };
 
-
 export default function CommonReducer(state = initialState, action){
 	switch (action.type) {
 		case types.IS_LOGIN:
