@@ -22,7 +22,7 @@ export default class Login extends React.Component{
     this.props.form.validateFields(
       (err,values) => {
         if (!err) {
-          fetchPost('/register',values).then((data)=>{
+          fetchPost('/login',values).then((data)=>{
           	console.log(data);
           });
         }
