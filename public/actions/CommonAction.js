@@ -12,9 +12,6 @@ function setLoginStatus(islogin){
 
 export function islogin(islogin){
 	return dispatch=>{
-		setTimeout(()=>{
-			dispatch(setLoginStatus(islogin));
-		},2000)
-		
+		dispatch(setLoginStatus(islogin));	
 	}
 }

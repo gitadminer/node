@@ -1,6 +1,6 @@
 import React from 'react';
 import { bindActionCreators } from 'redux'
-import {Link} from 'react-router-dom';
+import {Link,Route} from 'react-router-dom';
 import { connect } from 'react-redux'
 import { Icon,Button,Layout } from 'antd';
 import '../assets/style/home.scss';
@@ -38,6 +38,7 @@ export default class App extends React.Component{
 	 	})
 	 }
 	render(){
+		let {routes} = this.props;
 		return(
 				<Layout className="container-home">
 					<Header>

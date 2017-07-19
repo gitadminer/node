@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {islogin} from '../actions/CommonAction';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import {fetchPost} from '../api/config';
 const FormItem = Form.Item;
@@ -12,18 +14,27 @@ const formTailLayout = {
 };
 
 @Form.create({})
+@connect()
+
 
 export default class Login extends React.Component{
+  constructor(props) {
+    super(props);
+    console.log(this)
+  }
   state = {
     checkNick: false,
-
   };
   check = () => {
     this.props.form.validateFields(
       (err,values) => {
         if (!err) {
           fetchPost('/login',values).then((data)=>{
-          	console.log(data);
+          	if(data.code === 200){
+              window.localStorage.setItem('user',JSON.stringify(values));
+              this.props.dispatch(islogin(true));
+              this.props.history.replace('/');
+            }
           });
         }
       },
@@ -44,7 +55,7 @@ export default class Login extends React.Component{
           )}
         </FormItem>
         <FormItem {...formItemLayout} label="密码">
-          {getFieldDecorator('nickname', {
+          {getFieldDecorator('password', {
             rules: [{
               required: true,
               message: '请输入你的密码'

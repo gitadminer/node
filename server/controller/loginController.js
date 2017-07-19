@@ -12,17 +12,11 @@ class loginController extends BaseComponent{
 		this.register =this.register.bind(this);
 	}
 	async login(req, res, next){
-		res.send({
-			code:200,
-			data:'success'
-		})
-	}
-	async register(req, res, next){
 		let form = new formidable.IncomingForm();
 		form.parse(req,async (error,fields, files)=>{
 			if(error){
 				res.send({
-					code:200,
+					code:-101,
 					type:'FROM_DATA_ERROR',
 					message:'表单内容有误'
 				})
@@ -31,7 +25,51 @@ class loginController extends BaseComponent{
 			let {username,password} = fields;
 			if(!username&&!password){
 				res.send({
-					code:200,
+					code:-201,
+					type:'FROM_DATA_ERROR',
+					message:'表单内容格式错误'
+				})
+				return;
+			}
+			let name = await userModel.findOne({username});
+			if(!name){
+				res.send({
+					code:404,
+					type:'FROM_DATA_UNEXIST',
+					message:'用户名不存在'
+				})
+			}else{
+				if(name.passowrd === password.password){
+					res.send({
+						code:200,
+						message:'登录成功'
+					})
+				}else{
+					res.send({
+						code:403,
+						type:'FROM_DATA_UNEXIST',
+						message:'用户密码不存在'
+					})
+				}
+			}
+
+		})
+	}
+	async register(req, res, next){
+		let form = new formidable.IncomingForm();
+		form.parse(req,async (error,fields, files)=>{
+			if(error){
+				res.send({
+					code:-101,
+					type:'FROM_DATA_ERROR',
+					message:'表单内容有误'
+				})
+				return;
+			}
+			let {username,password} = fields;
+			if(!username&&!password){
+				res.send({
+					code:-201,
 					type:'FORM_DATA_ERROR',
 					message:'表单内容格式错误'
 				})
@@ -40,7 +78,7 @@ class loginController extends BaseComponent{
 			let name = await userModel.findOne({username});
 			if(name){
 				res.send({
-					code:200,
+					code:-201,
 					type:'USER_DATA_ERROR',
 					message:'用户名已存在'
 				})
@@ -57,11 +95,11 @@ class loginController extends BaseComponent{
 				}
 				await userModel.create(User);
 				res.send({
-					status: 1,
+					code:200,
 					message: '注册成功',
 				})
 
-				}
+			}
 		})
 	}
 	async logout(req, res, next){
