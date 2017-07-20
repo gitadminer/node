@@ -19,3 +19,10 @@ body{
     -webkit-text-size-adjust: none;
     apple-mobile-web-app-status-bar-style: black-translucent;
 }
+#app,.ant-layout.ant-layout-has-sider{
+   position: absolute;
+   top:0;
+   width:100%;
+   left:0;
+   bottom:0; 
+}
