@@ -37,4 +37,14 @@ app.use(session({
 app.use('/',AdminRouter);
 app.use(history());
 app.use(express.static('./views'));
-app.listen(3000);
+//app.listen(3000);
+
+
+const http = require('http')
+//let  port = normalizePort(process.env.PORT || '3000')
+app.set('port', 3000)
+const server = http.createServer(app)
+const io = require('socket.io')(server)
+
+
+server.listen(3000)
