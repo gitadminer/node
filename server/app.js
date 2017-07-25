@@ -39,5 +39,6 @@ app.use('/',AdminRouter);
 app.use(history());
 app.use(express.static('./views'));
 
-const io = require(scoket)(app)
-io.listen(3000)
+// const io = require(scoket)(app)
+// io.listen(3000)
+app.listen(3000);
