@@ -20,7 +20,6 @@ const formTailLayout = {
 export default class Login extends React.Component{
   constructor(props) {
     super(props);
-    console.log(this)
   }
   state = {
     checkNick: false,

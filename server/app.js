@@ -5,7 +5,6 @@ import session from 'express-session';
 import connectMongo from 'connect-mongo';
 import history from 'connect-history-api-fallback';
 import AdminRouter from './router/admin.js';
-import scoket from './socket/socket.js'
 const app = express();
 
 app.all('*', (req, res, next) => {
@@ -39,6 +38,5 @@ app.use('/',AdminRouter);
 app.use(history());
 app.use(express.static('./views'));
 
-// const io = require(scoket)(app)
-// io.listen(3000)
-app.listen(3000);
+const io = require('./socket/socket.js')(app)
+io.listen(3000)

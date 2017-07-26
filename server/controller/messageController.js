@@ -14,5 +14,7 @@ class Message extends baseController{
 	async savemessage(req, res, next){
 		
 	},
-
+	saveUsermessage(data){
+		
+	}
 }
