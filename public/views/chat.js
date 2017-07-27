@@ -15,19 +15,28 @@ export default class Chat extends React.Component{
 		super(props)
 	}
 	componentDidMount() {
-	    let user = JSON.parse(window.localStorage.getItem('user'));
-	    ClientSocket.init(user.username);
+	    this.user = JSON.parse(window.localStorage.getItem('user'));
+	    //链接服务器
+	    ClientSocket.init(this.user.username);
+	    //打开信息监听器
+	    ClientSocket.receiveMessage(this.user.username,this.addChatLog)
 	}
 	shouldComponentUpdate(nextprops,nextstate){
 	 	return true;
 	}
 	sendMsg(){
+		if(this.state.message===''){
+			return;
+		}
 		ClientSocket.sendMessage({
 			type:1,
-			username:'ss',
+			username:this.user.username,
 			message:this.state.message
 		})
-		//console.log(this.state.message);
+		this.setState({ message: '' });
+	}
+	addChatLog(data){
+		console.log(data)
 	}
 	updateData(e){
 		this.setState({ message: e.target.value });

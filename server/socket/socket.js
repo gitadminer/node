@@ -1,5 +1,5 @@
 'use strict';
-
+import messageCont
 const ioEvents = function(io){
 
 	io.of('/room').on('connection',(socket)=>{
@@ -9,7 +9,7 @@ const ioEvents = function(io){
 			console.log(scoketID);
 		})
 		socket.on('sendMsg',(data)=>{
-			console.log(data);
+			socket.emit('send'+data.username,{code:'200',data:'发送成功'})
 		})
 		// //退出聊天室
 		// socket.on('disconnet',(userid)=>{

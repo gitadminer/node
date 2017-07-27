@@ -15,6 +15,11 @@ import Login from '../views/login.js';
 import Chat from '../views/chat.js';
 
 const routes =[
+  {
+    path:'/login',
+    exact: true,
+    component:Login
+  },
 	{
 		path:'/',
 		component:App,
@@ -25,11 +30,6 @@ const routes =[
         component:Chat
       }
     ]
-	},
-	{
-		path:'/login',
-    exact: true,
-		component:Login
 	}
 ]
 

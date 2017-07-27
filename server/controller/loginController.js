@@ -5,6 +5,7 @@
 import BaseComponent from './baseController.js';
 import userModel from '../models/userModel.js';
 import formidable from 'formidable';
+import jsonwebtoken from 'jsonwebtoken';
 class loginController extends BaseComponent{
 	constructor(){
 		super()
@@ -32,6 +33,7 @@ class loginController extends BaseComponent{
 				return;
 			}
 			let name = await userModel.findOne({username});
+
 			if(!name){
 				res.send({
 					code:404,
@@ -40,8 +42,24 @@ class loginController extends BaseComponent{
 				})
 			}else{
 				if(name.passowrd === password.password){
+					let token = jsonwebtoken.sign({
+					  exp: Math.floor(Date.now() / 1000) + (60 * 60 *24 * 7),
+					  data: name.id
+					}, 'secret');
+					if(!token){
+						res.send({
+							code:500,
+							type:'ERROR'
+						})
+						return;
+					}
 					res.send({
 						code:200,
+						data:{
+							token:token,
+							username:name.username,
+							profile:name.profile
+						},
 						message:'登录成功'
 					})
 				}else{

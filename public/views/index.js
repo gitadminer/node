@@ -52,13 +52,13 @@ export default class App extends React.Component{
 		        >
 		          <div className="menulogo" />
 		          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-		            <Menu.Item key="1">
+		          	<Menu.Item key="1">
 		              <Icon type="pie-chart" />
-		              <span>Option 1</span>
+		              <span>数据中心</span>
 		            </Menu.Item>
 		            <Menu.Item key="2">
-		              <Icon type="desktop" />
-		              <span>Option 2</span>
+		              <Icon type="message" />
+		              <span><Link to="/chat">CHAT</Link></span>
 		            </Menu.Item>
 		            <SubMenu
 		              key="sub1"
@@ -75,10 +75,6 @@ export default class App extends React.Component{
 		              <Menu.Item key="6">Team 1</Menu.Item>
 		              <Menu.Item key="8">Team 2</Menu.Item>
 		            </SubMenu>
-		            <Menu.Item key="8">
-		              <Icon type="file" />
-		              <span>File</span>
-		            </Menu.Item>
 		          </Menu>
 		        </Sider>
 		        <Layout>

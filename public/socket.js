@@ -19,9 +19,9 @@ const ClientSocket = {
 		this.socket.emit('sendMsg', obj);
 	},
 	//接收信息
-	receiveMessage(username){
+	receiveMessage(username,cb){
 		this.socket.on('send'+username,(data)=>{
-			console.log(data);
+			cb(data);
 		})
 	},
 	//退出
