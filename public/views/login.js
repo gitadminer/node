@@ -30,7 +30,7 @@ export default class Login extends React.Component{
         if (!err) {
           fetchPost('/login',values).then((data)=>{
           	if(data.code === 200){
-              window.localStorage.setItem('user',JSON.stringify(values));
+              window.localStorage.setItem('user',JSON.stringify(data.data));
               this.props.dispatch(islogin(true));
               this.props.history.replace('/');
             }

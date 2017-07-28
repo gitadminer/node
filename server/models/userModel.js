@@ -9,9 +9,9 @@ const adminSchema = new Schema({
 	password:String,
 	id: Number,
 	create_time: String,
-	profile:String, //头像
-	status:0  //登录状态
-	is_in_room:0 //是否在聊天室
+	profile:{type:String,default:'default.jpg'}, //头像
+	status:{type:Number,default:0},  //登录状态
+	is_in_room:{type:Number,default:0} //是否在聊天室
 })
 
 adminSchema.index({id: 1});

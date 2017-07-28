@@ -17,7 +17,7 @@ class loginController extends BaseComponent{
 		form.parse(req,async (error,fields, files)=>{
 			if(error){
 				res.send({
-					code:-101,
+					code:-500,
 					type:'FROM_DATA_ERROR',
 					message:'表单内容有误'
 				})
@@ -26,7 +26,7 @@ class loginController extends BaseComponent{
 			let {username,password} = fields;
 			if(!username&&!password){
 				res.send({
-					code:-201,
+					code:-500,
 					type:'FROM_DATA_ERROR',
 					message:'表单内容格式错误'
 				})
@@ -36,7 +36,7 @@ class loginController extends BaseComponent{
 
 			if(!name){
 				res.send({
-					code:404,
+					code:-500,
 					type:'FROM_DATA_UNEXIST',
 					message:'用户名不存在'
 				})
@@ -48,23 +48,21 @@ class loginController extends BaseComponent{
 					}, 'secret');
 					if(!token){
 						res.send({
-							code:500,
+							code:-500,
 							type:'ERROR'
 						})
 						return;
 					}
+					delete name.password;
+					name.token = token
 					res.send({
 						code:200,
-						data:{
-							token:token,
-							username:name.username,
-							profile:name.profile
-						},
+						data:name,
 						message:'登录成功'
 					})
 				}else{
 					res.send({
-						code:403,
+						code:-500,
 						type:'FROM_DATA_UNEXIST',
 						message:'用户密码不存在'
 					})
@@ -78,7 +76,7 @@ class loginController extends BaseComponent{
 		form.parse(req,async (error,fields, files)=>{
 			if(error){
 				res.send({
-					code:-101,
+					code:-500,
 					type:'FROM_DATA_ERROR',
 					message:'表单内容有误'
 				})
@@ -87,7 +85,7 @@ class loginController extends BaseComponent{
 			let {username,password} = fields;
 			if(!username&&!password){
 				res.send({
-					code:-201,
+					code:-500,
 					type:'FORM_DATA_ERROR',
 					message:'表单内容格式错误'
 				})
@@ -96,7 +94,7 @@ class loginController extends BaseComponent{
 			let name = await userModel.findOne({username});
 			if(name){
 				res.send({
-					code:-201,
+					code:-500,
 					type:'USER_DATA_ERROR',
 					message:'用户名已存在'
 				})
@@ -112,9 +110,10 @@ class loginController extends BaseComponent{
 					profile:''
 				}
 				await userModel.create(User);
+				delete User.password;
 				res.send({
 					code:200,
-					message: '注册成功',
+					message: User,
 				})
 
 			}

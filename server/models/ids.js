@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 
 const idsSchema =  new mongoose.Schema({
 	user_id:Number,
-	content_id:Number
+	content_id:Number,
+	message_id:Number
 })
 
 const Ids = mongoose.model('Ids',idsSchema);

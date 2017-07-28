@@ -2,21 +2,19 @@
 
 import mongoose from 'mongoose';
 
-const Schema = mongoose.Schema;
-
-const messageSchema = new Schema({
+const message_Schema = new mongoose.Schema({
 	message_id:Number,
 	send_id:Number,
 	receive_id:Number,
 	send_name:String,
-	type:1,  //信息类型
-	image:String,
-	message:String,
-	is_read:0,  //是否已读
-	send_time:Date
-})
-adminSchema.index({message_id: 1});
+	message_type:{type:Number,default:1},  //信息类型
+	image:{type:String,default:''},
+	message:{type:String,default:''},
+	is_read:{type:Number,default:0},  //是否已读
+	send_time:String
+});
+message_Schema.index({message_id: 1});
 
-const Message = mongoose.model('Message', messageSchema);
+const Message = mongoose.model('Message', message_Schema);
 
 export default Message;
