@@ -1,5 +1,6 @@
 'use strict';
-import messageCont
+import messageCont from '../controller/messageController.js';
+const MessageAssets = new messageCont();
 const ioEvents = function(io){
 
 	io.of('/room').on('connection',(socket)=>{
@@ -10,6 +11,11 @@ const ioEvents = function(io){
 		})
 		socket.on('sendMsg',(data)=>{
 			socket.emit('send'+data.username,{code:'200',data:'发送成功'})
+
+			//将信息返回数据库
+			MessageAssets.saveUsermessage(data,(data)=>{
+				socket.emit('send'+data.receive_id,data);
+			})
 		})
 		// //退出聊天室
 		// socket.on('disconnet',(userid)=>{

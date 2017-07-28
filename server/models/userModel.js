@@ -11,6 +11,7 @@ const adminSchema = new Schema({
 	create_time: String,
 	profile:String, //头像
 	status:0  //登录状态
+	is_in_room:0 //是否在聊天室
 })
 
 adminSchema.index({id: 1});
