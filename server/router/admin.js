@@ -10,7 +10,7 @@ router.get('/admin',Admin.index)
 router.post('/login',Login.login);
 router.post('/register',Login.register);
 router.get('/logout',Login.logout);
-router.get('/test',Login.test);
 router.post('/chat/save',Message.savemessage);
+
 
 export default router;

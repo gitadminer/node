@@ -28,13 +28,15 @@ export default class Chat extends React.Component{
 		if(this.state.message===''){
 			return;
 		}
-		console.log(this.user)
-		// ClientSocket.sendMessage({
-		// 	type:1,
-		// 	username:this.user.username,
-		// 	message:this.state.message
-		// })
-		// this.setState({ message: '' });
+		console.log(this.user);
+		ClientSocket.sendMessage({
+			send_id:this.user.id,
+			receive_id:1,
+			send_name:this.user.username,
+			message_type:1,
+			message:this.state.message
+		})
+		this.setState({ message: '' });
 	}
 	addChatLog(data){
 		console.log(data)

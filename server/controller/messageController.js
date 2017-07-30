@@ -11,6 +11,34 @@ class Message extends baseController{
 	constructor(props) {
 		super(props);
 		this.savemessage = this.savemessage.bind(this);
+		this.toSave = this.toSave.bind(this);
+	}
+	async toSave(data){
+		let {send_id,receive_id,send_name,message_type} = data;
+		if(!send_id||!receive_id||!send_name||!message_type){
+			res.send({
+				code:-500,
+				message:'数据格式有误'
+			})
+			return;
+		}
+		const message_id = await this.getId('message_id');
+		let message = {
+			message_id:message_id,
+			send_id:send_id,
+			receive_id:receive_id,
+			send_name:send_name,
+			message_type:message_type,  //信息类型
+			is_read:0,  //是否已读
+			send_time:new Date().getTime()
+		}
+		if(message_type == 1){
+			message.message = data.message
+		}else if(message_type == 2){
+			message.image = data.image
+		}
+		await messageModel.create(message);
+		return message;
 	}
 	async savemessage(req, res, next){
 		let form = new formidable.IncomingForm();
@@ -22,8 +50,8 @@ class Message extends baseController{
 				})
 				return;
 			}
-			let {send_id,receive_id,send_name,message_type,is_read} = fields;
-			if(!send_id||!receive_id||!send_name||!message_type||!is_read){
+			let {send_id,receive_id,send_name,message_type} = fields;
+			if(!send_id||!receive_id||!send_name||!message_type){
 				res.send({
 					code:-500,
 					message:'数据格式有误'

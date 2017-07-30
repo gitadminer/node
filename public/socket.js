@@ -7,7 +7,6 @@ const base = {
 const ClientSocket = {
   	socket:null,
 	init(username){
-
 		this.socket = io.connect(base.server,{'force new connection': true}),
 		this.socket.on('open',()=>{
 	      console.log('已连接')

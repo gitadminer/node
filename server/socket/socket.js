@@ -1,8 +1,9 @@
 'use strict';
 
-import BaseController from '../controller/baseController.js';
-const ioEvents =async function(io){
+import messageController from '../controller/messageController.js';
 
+const ioEvents =async function(io){
+	
 	io.of('/room').on('connection',async (socket)=>{
 		//有新用户加入聊天室
 		socket.emit('open')
@@ -10,17 +11,12 @@ const ioEvents =async function(io){
 			console.log(scoketID);
 		})
 		 socket.on('sendMsg',async (data)=>{
-			socket.emit('send'+data.username,{code:'200',data:'发送成功'})
+			socket.emit('send'+data.send_name,{code:'200',data:'发送成功'})
 
 			//将信息返回数据库
-			const request =  await BaseController.fetch('/chat/save',data,type='post');
-			socket.emit('send'+data.username,request);
-			//console.log(data)
+			let results = await messageController.toSave(data);
+			socket.emit('send'+results.send_name,results);
 		})
-		// //退出聊天室
-		// socket.on('disconnet',(userid)=>{
-			
-		// })
 	})
 }
 

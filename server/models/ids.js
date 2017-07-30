@@ -13,7 +13,8 @@ Ids.findOne((err,data)=>{
 	if(!data){
 		const newIds = new Ids({
 			user_id:0,
-			content_id:0
+			content_id:0,
+			message_id:0
 		})
 		newIds.save();
 	}
