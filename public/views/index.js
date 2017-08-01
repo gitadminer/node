@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import RouteWithSubRoutes from '../router/config.js';
+import IndexInfo from '../components/IndexInfo.js';
 import {Layout, Menu, Breadcrumb, Icon} from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -17,7 +18,6 @@ export default class App extends React.Component{
     	collapsed: false,
 	};
 	onCollapse = (collapsed) => {
-	    console.log(collapsed);
 	    this.setState({ collapsed });
 	 }
 	constructor(props,contex){
@@ -58,7 +58,7 @@ export default class App extends React.Component{
 		            </Menu.Item>
 		            <Menu.Item key="2">
 		              <Icon type="message" />
-		              <span><Link to="/chat">CHAT</Link></span>
+		              <span>CHAT</span>
 		            </Menu.Item>
 		            <SubMenu
 		              key="sub1"
@@ -85,9 +85,9 @@ export default class App extends React.Component{
 		              <Breadcrumb.Item>Bill</Breadcrumb.Item>
 		            </Breadcrumb>
 		            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-		              {routes.map((route, i) => (
-				          <RouteWithSubRoutes key={i} {...route}/>
-				       ))}
+			            {routes.map((route, i) => (
+					        <RouteWithSubRoutes key={i} {...route}/>
+					     ))}
 		            </div>
 		          </Content>
 		          <Footer style={{ textAlign: 'center' }}>

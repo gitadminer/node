@@ -5,7 +5,6 @@ const { TextArea } = Input;
 import '../assets/style/chat.scss';
 import ClientSocket from '../socket.js';
 
-
 export default class Chat extends React.Component{
 	state ={
 		messageLoading:false,
