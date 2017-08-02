@@ -33,16 +33,13 @@ export default class App extends React.Component{
 	 shouldComponentUpdate(nextprops,nextstate){
 	 	console.log(nextprops,nextstate)
 	 	return true;
-	 }
-	 handleChange() {
-	    // 任何时候数据发生改变就更新组件
-
-	 }
-	 resizename(){
-
-	 }
+	}
+	handerClickMenu(e){
+		console.log(e);
+	}
 	render(){
 		const {routes} = this.props;
+		console.log(this)
 		return(
 			<Layout>
 		        <Sider
@@ -51,12 +48,12 @@ export default class App extends React.Component{
 		          onCollapse={this.onCollapse}
 		        >
 		          <div className="menulogo" />
-		          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-		          	<Menu.Item key="1">
+		          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" onClick={this.handerClickMenu}>
+		          	<Menu.Item key="1" path='/'>
 		              <Icon type="pie-chart" />
 		              <span>数据中心</span>
 		            </Menu.Item>
-		            <Menu.Item key="2">
+		            <Menu.Item key="2" path='/chat'>
 		              <Icon type="message" />
 		              <span>CHAT</span>
 		            </Menu.Item>
