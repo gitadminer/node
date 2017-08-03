@@ -30,6 +30,7 @@
     "mongoose": "^4.10.4",
     "node-fetch": "^1.7.1",
     "nodejs-websocket": "^1.7.1",
+    "qiniu": "^7.0.5",
     "socket.io": "^2.0.3"
   },
   "devDependencies": {

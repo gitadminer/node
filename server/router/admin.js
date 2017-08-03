@@ -7,6 +7,7 @@ import Message from '../controller/messageController.js';
 const router = express.Router();
 
 router.get('/admin',Admin.index)
+router.get('/qiniu/token',Admin.getQiniuToken);
 router.post('/login',Login.login);
 router.post('/register',Login.register);
 router.get('/logout',Login.logout);

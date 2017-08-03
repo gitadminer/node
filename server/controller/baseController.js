@@ -1,6 +1,9 @@
 'use strict';
 import fetch from 'node-fetch';
 import Ids from '../models/ids.js';
+import qiniu from 'qiniu';
+qiniu.conf.ACCESS_KEY = 'fJIynaY0F6Kc8_wGezZdj3KzRzJ3UzKwlwRQXIYK';
+qiniu.conf.SECRET_KEY = 'vLiQndy2T8pnWF-WIsD8mno0vT-Yqi3X8cl2yKAQ';
 
 export default class BaseComponent{
 	async getId(type){
@@ -55,5 +58,21 @@ export default class BaseComponent{
 			throw new Error(err)
 		}
 		return responseJson
+	}
+	async qiniuToken(){
+		
+		const options = {
+		  scope: 'ruiyang',
+		  expires: 7200,
+		  callbackBody: 'key=$(key)&hash=$(etag)&bucket=$(bucket)&fsize=$(fsize)&name=$(x:name)'
+		}
+		let mac = new qiniu.auth.digest.Mac(qiniu.conf.ACCESS_KEY,qiniu.conf.SECRET_KEY);
+
+		let putPolicy = new qiniu.rs.PutPolicy(options);
+
+		let token = await putPolicy.uploadToken(mac);
+  			
+  		return token;
+
 	}
 }
