@@ -2,7 +2,6 @@
 <html>
 <head>
 <title>Full Editor - Quill</title>
-<link type="application/atom+xml" rel="alternate" href="https://quilljs.com/feed.xml" title="quill"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css"/>
 <link rel="stylesheet" href="https://cdn.quilljs.com/1.3.0/quill.snow.css"/>
@@ -80,8 +79,28 @@
 <div id="standalone-container">
   <div id="toolbar-container">
     <span class="ql-formats">
-      <select class="ql-font"></select>
-      <select class="ql-size"></select>
+      <select class="ql-font">
+        <option value="Avenir" selected>Avenir</option>
+        <option value="Arial">Arial</option>
+        <option value="Helvetica">Helvetica</option>
+        <option value="monospace">monospace</option>
+        <option value="serif">serif</option>
+        <option value="sans-serif">sans-serif</option>
+      </select>
+      <select class="ql-size">
+          <option value="10px">10px</option>
+          <option value="12px">12px</option>
+          <option value="14px">12px</option>
+          <option value="16px" selected>16px</option>
+          <option value="18px">18px</option>
+          <option value="20px">20px</option>
+          <option value="22px">22px</option>
+          <option value="24px">24px</option>
+          <option value="26px">26px</option>
+          <option value="28px">28px</option>
+          <option value="30px">30px</option>
+          <option value="32px">32px</option>
+      </select>
     </span>
     <span class="ql-formats">
       <button class="ql-bold"></button>
@@ -98,25 +117,24 @@
       <button class="ql-script" value="super"></button>
     </span>
     <span class="ql-formats">
-      <button class="ql-header" value="1"></button>
-      <button class="ql-header" value="2"></button>
+      <select class="ql-header">
+          <option value="1">H1</option>
+          <option value="2">H2</option>
+          <option value="3">H3</option>
+          <option value="4">H4</option>
+          <option value="5">H5</option>
+          <option value="6">H6</option>
+      </select>
       <button class="ql-blockquote"></button>
-      <button class="ql-code-block"></button>
     </span>
     <span class="ql-formats">
       <button class="ql-list" value="ordered"></button>
       <button class="ql-list" value="bullet"></button>
-      <button class="ql-indent" value="-1"></button>
-      <button class="ql-indent" value="+1"></button>
-    </span>
-    <span class="ql-formats">
-      <button class="ql-direction" value="rtl"></button>
-      <select class="ql-align"></select>
+       <select class="ql-align"></select>
     </span>
     <span class="ql-formats">
       <button class="ql-link"></button>
       <button class="ql-image" data-toggle="modal" data-target="#myModal"></button>
-      <button class="ql-video"></button>
       <button class="ql-formula"></button>
     </span>
     <span class="ql-formats">
@@ -124,6 +142,7 @@
     </span>
   </div>
   <div id="editor-container"></div>
+  <div class="btn btn-primary test">TEST</div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -166,7 +185,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary done-to-image">Done</button>
           </div>
         </div>
       </div>
@@ -182,6 +201,7 @@
 <script type="text/javascript" src="./modules/image-resize.min.js"></script>
 
 <script type="text/javascript">
+  $('#editor-container').append('<h1>test</h1>');
   var uploader = Qiniu.uploader({
       runtimes: 'html5,flash,html4',      // 上传模式，依次退化
       browse_button: 'pickfiles',         // 上传选择的点选按钮，必需
@@ -246,15 +266,26 @@
           }
       }
   });
+  var SizeStyle = Quill.import('attributors/style/size');
+  var AlignStyle = Quill.import('attributors/style/align');
+  var FontStyle =  Quill.import('attributors/style/font');
+  SizeStyle.whitelist = ['10px','12px','14px','16px','18px','20px','22px','24px','26px','28px','30px','32px'];
+  FontStyle.whitelist=['Avenir','Arial','Helvetica','monospace','serif','sans-serif'];
+  Quill.register(SizeStyle,true);
+  Quill.register(AlignStyle,true);
+  Quill.register(FontStyle,true);
   var quill = new Quill('#editor-container', {
     modules: {
       formula: true,
       syntax: true,
       toolbar: {
-         container:'#toolbar-container',
-         handlers:{
+        container:'#toolbar-container',
+        handlers:{
            'image':function(val){
-              console.log(this);
+              //console.log(this);
+           },
+           'indent':function(val){
+              //console.log(this)
            }
          }
       },
@@ -263,9 +294,10 @@
     placeholder: 'Compose an epic...',
     theme: 'snow'
   });
-  console.log(quill)
-  quill.insertEmbed(quill.getLength(),'image','http://oimfbr2l4.bkt.clouddn.com/react/o_1bmjm3i2j177u174h1v2u5747cgbarticle-default.png');
-  quill.insertEmbed(quill.getLength()-1,'image','http://oimfbr2l4.bkt.clouddn.com/react/o_1bmjm6qg81r1vesthfo1lcf1lfadcart_icon.png');
+  //console.log(quill)
+  //quill.insertEmbed(quill.getLength(),'image','http://oimfbr2l4.bkt.clouddn.com/react/o_1bmjm3i2j177u174h1v2u5747cgbarticle-default.png');
+  //quill.insertEmbed(quill.getLength()-1,'image','http://oimfbr2l4.bkt.clouddn.com/react/o_1bmjm6qg81r1vesthfo1lcf1lfadcart_icon.png');
+  //console.log(quill.root.innerHTML)
   function porgress(file,val,info=null){ 
     var percentage = parseInt(file.percent, 10);
     if (file.status !== plupload.DONE && percentage === 100) {
@@ -304,7 +336,26 @@
       createImageShow(val)
     }
   })
-
+  $('.done-to-image').on('click',function(evt){
+    //获取图片集合
+    var srcArray =[];
+    $('.thumbnail').each(function(index,element){
+      if(!$(element).hasClass('selected-image')) return;
+      //srcArray.push($(element).find('img').attr('src'))
+      wirteImageToEditor($(element).find('img').attr('src'))
+    })
+    $('#myModal').modal('hide');
+  })
+  function wirteImageToEditor(src){
+    var index = quill.getLength();
+    try{
+        var temp = quill.getSelection();
+        if(temp!==null){
+          index = temp.index;
+        }
+    }catch(e){}
+    quill.insertEmbed(index-1,'image',src);
+  }
 </script>
 
 </html>
