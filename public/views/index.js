@@ -50,12 +50,16 @@ export default class App extends React.Component{
 		          <div className="menulogo" />
 		          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" onClick={this.handerClickMenu}>
 		          	<Menu.Item key="1" path='/'>
-		              <Icon type="pie-chart" />
-		              <span>数据中心</span>
+		          	  <Link to="/">
+			              <Icon type="pie-chart" />
+			              <span>数据中心</span>
+		              </Link>
 		            </Menu.Item>
-		            <Menu.Item key="2" path='/chat'>
-		              <Icon type="message" />
-		              <span>CHAT</span>
+		            <Menu.Item key="2">
+		              <Link to="/chat">
+			              <Icon type="message" />
+			              <span>CHAT</span>
+			           </Link>
 		            </Menu.Item>
 		            <SubMenu
 		              key="sub1"

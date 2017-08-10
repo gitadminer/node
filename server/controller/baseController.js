@@ -60,7 +60,6 @@ export default class BaseComponent{
 		return responseJson
 	}
 	async qiniuToken(){
-		
 		const options = {
 		  scope: 'ruiyang',
 		  expires: 7200,
