@@ -126,7 +126,15 @@ class loginController extends BaseComponent{
 		})
 	}
 	async test(req,res,next){
-		res.send({id:await this.getId('user_id')})
+		const mysql = req.mysql;
+		 mysql.query('select * from user').then((rows)=>{
+		 	console.log(rows);
+		 }).then(()=>{
+		 	res.send({
+				code:200,
+				data:'success'
+			})
+		 })
 	}
 }
 export default new loginController();

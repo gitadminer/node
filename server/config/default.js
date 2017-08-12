@@ -11,5 +11,12 @@ module.exports = {
 		    secure:   false,
 		    maxAge:   365 * 24 * 60 * 60 * 1000,
 		}
+	},
+	mysql:{
+		host:'127.0.0.1',
+		user:'root',
+		password:'',
+		database:'node',
+		prot:3306
 	}
 }

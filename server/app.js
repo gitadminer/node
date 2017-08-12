@@ -1,5 +1,6 @@
 import express from 'express';
 import db from './mongodb/db.js';
+import mysql from './mongodb/mysql.js'
 import cookieParser from 'cookie-parser'
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
@@ -34,6 +35,11 @@ app.use(session({
 	  	url: config.host
 	})
 }))
+
+app.use(function(req, res, next){
+	req.mysql = mysql;
+	next()
+})
 app.use('/',AdminRouter);
 app.use(history());
 app.use(express.static('./views'));

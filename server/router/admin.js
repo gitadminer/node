@@ -11,6 +11,7 @@ router.get('/qiniu/token',Admin.getQiniuToken);
 router.post('/login',Login.login);
 router.post('/register',Login.register);
 router.get('/logout',Login.logout);
+router.get('/test',Login.test);
 router.post('/chat/save',Message.savemessage);
 router.post('/robot/getinfo',Robot.getrobotinfo);
 
