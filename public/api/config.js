@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import qs from 'qs';
-
+console.log(process.env)
 let baseURI = 'http://localhost:3000'
 export const fetchGet = (url,params)=>{
   return fetch(`${baseURI+url}?${qs.stringify(params)}`)

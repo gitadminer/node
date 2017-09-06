@@ -32,6 +32,7 @@
     "node-fetch": "^1.7.1",
     "nodejs-websocket": "^1.7.1",
     "promise-mysql": "^3.0.2",
+    "puppeteer": "^0.10.2",
     "qiniu": "^7.0.5",
     "socket.io": "^2.0.3"
   },

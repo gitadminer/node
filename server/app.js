@@ -1,6 +1,5 @@
 import express from 'express';
 import db from './mongodb/db.js';
-import mysql from './mongodb/mysql.js'
 import cookieParser from 'cookie-parser'
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
@@ -36,13 +35,11 @@ app.use(session({
 	})
 }))
 
-app.use(function(req, res, next){
-	req.mysql = mysql;
-	next()
-})
 app.use('/',AdminRouter);
 app.use(history());
 app.use(express.static('./views'));
 
-const io = require('./socket/socket.js')(app)
-io.listen(3000)
+app.listen(20010);
+
+//const io = require('./socket/socket.js')(app)
+//io.listen(3000)

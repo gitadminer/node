@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Socket.io - Simple chat</title>
+    <script src="https://cdn.bootcss.com/socket.io/2.0.3/socket.io.js"></script>
+</head>
+<body>
+    <h1>Socket.io - Simple chat room</h1>
+    <div>
+        <span id="status">Connecting...</span>
+        <input type="text" id="input"/>
+    </div>
+    <div id="content"></div>
+</body>
+<script type="text/javascript">
+socket = io.connect('http://localhost:7001/chat');
+	//收到server的连接确认
+
+socket.on('res',function(data){
+	console.log(data)
+});
+socket.emit({'test':'hello'})
+socket.on('resT',function(data){
+	console.log(data)
+});
+</script>
+</html>
